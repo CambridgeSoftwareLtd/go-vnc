@@ -5,8 +5,8 @@ package vnc
 import (
 	"crypto/des"
 
+	"github.com/CambridgeSoftwareLtd/go-vnc/logging"
 	"github.com/golang/glog"
-	"github.com/kward/go-vnc/logging"
 )
 
 const (

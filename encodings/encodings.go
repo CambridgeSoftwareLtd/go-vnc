@@ -16,6 +16,6 @@ const (
 	Hextile           Encoding = 5
 	TRLE              Encoding = 15
 	ZRLE              Encoding = 16
-	ColorPseudo       Encoding = -239
+	CursorPseudo      Encoding = -239
 	DesktopSizePseudo Encoding = -223
 )

@@ -5,8 +5,8 @@ package vnc
 import (
 	"fmt"
 
+	"github.com/CambridgeSoftwareLtd/go-vnc/logging"
 	"github.com/golang/glog"
-	"github.com/kward/go-vnc/logging"
 
 	"golang.org/x/net/context"
 )

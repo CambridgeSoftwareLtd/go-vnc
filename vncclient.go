@@ -10,10 +10,11 @@ import (
 	"net"
 	"reflect"
 
+	"github.com/CambridgeSoftwareLtd/go-vnc/go/metrics"
+	"github.com/CambridgeSoftwareLtd/go-vnc/logging"
+	"github.com/CambridgeSoftwareLtd/go-vnc/messages"
+	"github.com/CambridgeSoftwareLtd/go-vnc/zrle"
 	"github.com/golang/glog"
-	"github.com/kward/go-vnc/go/metrics"
-	"github.com/kward/go-vnc/logging"
-	"github.com/kward/go-vnc/messages"
 	"golang.org/x/net/context"
 )
 
@@ -140,6 +141,15 @@ type ClientConn struct {
 
 	// Track metrics on system performance.
 	metrics map[string]metrics.Metric
+
+	// Global zlib reader
+	zlibStream zrle.ZlibStream
+}
+
+func (c ClientConn) SetFrameBuffer(width uint16, height uint16) (err error) {
+	c.fbWidth = width
+	c.fbHeight = height
+	return
 }
 
 func NewClientConn(c net.Conn, cfg *ClientConfig) *ClientConn {
@@ -159,6 +169,10 @@ func NewClientConn(c net.Conn, cfg *ClientConfig) *ClientConn {
 func (c *ClientConn) Close() error {
 	log.Print("VNC Client connection closed.")
 	return c.c.Close()
+}
+
+func (c *ClientConn) ZlibStream() zrle.ZlibStream {
+	return c.zlibStream
 }
 
 // DesktopName returns the server provided desktop name.
@@ -229,17 +243,16 @@ func (c *ClientConn) ListenAndHandle() error {
 		if logging.V(logging.ResultLevel) {
 			glog.Infof("message-type: %s", messageType)
 		}
-
 		msg, ok := serverMessages[messageType]
 		if !ok {
 			// Unsupported message type! Bad!
-			log.Printf("error unsupported message-type: %v", messageType)
+			log.Printf("error: unsupported message-type: %v", messageType.String())
 			break
 		}
 
 		parsedMsg, err := msg.Read(c)
 		if err != nil {
-			log.Printf("error parsing message; %v", err)
+			log.Printf("error parsing message: %v", err)
 			break
 		}
 
@@ -249,6 +262,7 @@ func (c *ClientConn) ListenAndHandle() error {
 		}
 
 		c.config.ServerMessageCh <- parsedMsg
+
 	}
 
 	return nil

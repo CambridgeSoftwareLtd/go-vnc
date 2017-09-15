@@ -5,9 +5,9 @@ package vnc
 import (
 	"io"
 
+	"github.com/CambridgeSoftwareLtd/go-vnc/logging"
+	"github.com/CambridgeSoftwareLtd/go-vnc/rfbflags"
 	"github.com/golang/glog"
-	"github.com/kward/go-vnc/logging"
-	"github.com/kward/go-vnc/rfbflags"
 )
 
 // clientInit implements §7.3.1 ClientInit.

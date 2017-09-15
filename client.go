@@ -7,13 +7,13 @@ import (
 	"strings"
 	"unicode"
 
+	"github.com/CambridgeSoftwareLtd/go-vnc/buttons"
+	"github.com/CambridgeSoftwareLtd/go-vnc/encodings"
+	"github.com/CambridgeSoftwareLtd/go-vnc/keys"
+	"github.com/CambridgeSoftwareLtd/go-vnc/logging"
+	"github.com/CambridgeSoftwareLtd/go-vnc/messages"
+	"github.com/CambridgeSoftwareLtd/go-vnc/rfbflags"
 	"github.com/golang/glog"
-	"github.com/kward/go-vnc/buttons"
-	"github.com/kward/go-vnc/encodings"
-	"github.com/kward/go-vnc/keys"
-	"github.com/kward/go-vnc/logging"
-	"github.com/kward/go-vnc/messages"
-	"github.com/kward/go-vnc/rfbflags"
 )
 
 // SetPixelFormatMessage holds the wire format message.

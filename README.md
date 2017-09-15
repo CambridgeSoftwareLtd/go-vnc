@@ -4,6 +4,8 @@ go-vnc is a VNC client library for Go.
 This library implements [RFC 6143][RFC6143] -- The Remote Framebuffer Protocol
 -- the protocol used by VNC.
 
+N.B. This is forked from [kward's work](https://github.com/kward/go-vnc) and it an attempt to extend encoding coverage. It is not feature complete or stable at present!
+
 ## Project links
 * Build Status:  [![Build Status][CIStatus]][CIProject]
 * Documentation: [![GoDoc][GoDocStatus]][GoDoc]
@@ -12,14 +14,14 @@ This library implements [RFC 6143][RFC6143] -- The Remote Framebuffer Protocol
 1. Download software and supporting packages.
 
     ```
-    $ go get github.com/kward/go-vnc
+    $ go get github.com/CambridgeSoftwareLtd/go-vnc
     $ go get golang.org/x/net
     ```
 
 ## Usage
 Sample code usage is available in the GoDoc.
 
-- Connect and listen to server messages: <https://godoc.org/github.com/kward/go-vnc#example-Connect>
+- Connect and listen to server messages: <https://godoc.org/github.com/CambridgeSoftwareLtd/go-vnc#example-Connect>
 
 The source code is laid out such that the files match the document sections:
 
@@ -40,8 +42,5 @@ There are two additional files that provide everything else:
 <!--- Links -->
 [RFC6143]: http://tools.ietf.org/html/rfc6143
 
-[CIProject]: https://travis-ci.org/kward/go-vnc
-[CIStatus]: https://travis-ci.org/kward/go-vnc.png?branch=master
-
-[GoDoc]: https://godoc.org/github.com/kward/go-vnc
-[GoDocStatus]: https://godoc.org/github.com/kward/go-vnc?status.svg
+[GoDoc]: https://godoc.org/github.com/CambridgeSoftwareLtd/go-vnc
+[GoDocStatus]: https://godoc.org/github.com/CambridgeSoftwareLtd/go-vnc?status.svg

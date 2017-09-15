@@ -5,7 +5,7 @@ package encodings
 import "fmt"
 
 const (
-	_Encoding_name_0 = "ColorPseudo"
+	_Encoding_name_0 = "CursorPseudo"
 	_Encoding_name_1 = "DesktopSizePseudo"
 	_Encoding_name_2 = "RawCopyRectRRE"
 	_Encoding_name_3 = "Hextile"

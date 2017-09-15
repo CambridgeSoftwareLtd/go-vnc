@@ -8,11 +8,13 @@ import (
 	"fmt"
 	"image"
 
+	"log"
+
+	"github.com/CambridgeSoftwareLtd/go-vnc/encodings"
+	"github.com/CambridgeSoftwareLtd/go-vnc/logging"
+	"github.com/CambridgeSoftwareLtd/go-vnc/messages"
+	"github.com/CambridgeSoftwareLtd/go-vnc/rfbflags"
 	"github.com/golang/glog"
-	"github.com/kward/go-vnc/encodings"
-	"github.com/kward/go-vnc/logging"
-	"github.com/kward/go-vnc/messages"
-	"github.com/kward/go-vnc/rfbflags"
 )
 
 // ServerMessage is the interface satisfied by server messages.
@@ -191,12 +193,17 @@ func (r *Rectangle) Read(c *ClientConn) error {
 		return fmt.Errorf("unsupported encoding type: %d", msg.E)
 	}
 
+	log.Println(encImpl.String())
+
 	enc, err := encImpl.Read(c, r)
 	if err != nil {
-		return fmt.Errorf("error reading rectangle encoding: %s", err)
+		return fmt.Errorf("%v error: %s", msg.E.String(), err)
 	}
 
 	r.Enc = enc
+
+	// log.Printf("Message received: { X:%v, Y:%v, W:%v, H:%v, E:%v }", r.X, r.Y, r.Width, r.Height, enc)
+
 	return nil
 }
 
