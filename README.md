@@ -7,7 +7,6 @@ This library implements [RFC 6143][RFC6143] -- The Remote Framebuffer Protocol
 N.B. This is forked from [kward's work](https://github.com/kward/go-vnc) and it an attempt to extend encoding coverage. It is not feature complete or stable at present!
 
 ## Project links
-* Build Status:  [![Build Status][CIStatus]][CIProject]
 * Documentation: [![GoDoc][GoDocStatus]][GoDoc]
 
 ## Setup
